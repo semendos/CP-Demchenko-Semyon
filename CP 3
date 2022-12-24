@@ -1,0 +1,70 @@
+#1
+
+import math
+
+
+def funct(x, b, h):
+    li = []
+    while True:
+        function = math.exp(x) + math.cos(x) / (x ** (1. / 3.) + math.atan(x) + 1)
+        li.append(function)
+        x += h
+        if x > b:
+            break
+    return li
+
+
+x = float(input('Введите начало множества '))
+b = float(input('Введите конец множества '))
+h = float(input('Введите шаг '))
+
+r = funct(x, b, h)
+print(r)
+
+#2
+
+def fun_num(number):
+    my_list = []
+    if number > 0:
+        my_list.append('Число положительное')
+    else:
+        my_list.append('Число отрицательное')
+    if number == int(number):
+        my_list.append('Число целое')
+    else:
+        my_list.append('Число нецелое')
+    if number % 2 == 0:
+        my_list.append('Число чётное')
+    else:
+        my_list.append('Число нечётное')
+    if number - int(number) == 0:
+        my_list.append(len(str(number)))
+        my_list.append(0)
+    else:
+        a = len(str(number)) - 1
+        b = len(str(int(number)))
+        my_list.append(a)
+        my_list.append(a - b)
+    print(my_list)
+
+
+number = float(input())
+fun_num(number)
+
+#3
+
+my_list = ['Зара', 'Машина', 'Охота', 'Зачёт', 'Ворота', 'Доброта', 'Вода', 'Опора', 'Жизнь']
+my_file = open("BabyFile.txt", "w+")
+
+for i in range(len(my_list)):
+    my_file.write(my_list[i] + "\n")
+my_file.close()
+
+def find_str(string):
+    with open("BabyFile.txt", "r") as file:
+        for line in file:
+            if string in line:
+                print(line)
+
+string = input()
+find_str(string)
