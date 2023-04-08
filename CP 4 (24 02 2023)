@@ -1,0 +1,61 @@
+# 1
+import math
+import statistics
+
+
+def func(*args):
+    print('Среднее арифметическое:', statistics.mean(args))
+    print('Дисперсия:', round(statistics.pvariance(args), 3))
+    print('Среднеквадратическое отклонение:', round(math.sqrt(statistics.pvariance(args)), 3))
+    print('Коэффициент вариации:', round(math.sqrt(statistics.pvariance(args)) / statistics.mean(args), 3))
+
+
+n = int(input('Введите количество значений: '))
+my_list = []
+for i in range(n):
+    my_list.append(float(input()))
+func(*my_list)
+
+#2 
+
+def check_lists(*args):
+    list_of_str = []
+    list_of_num = []
+    list_of_bool = []
+    list_of_other = []
+    for i in range(len(args)):
+        a = str(args[i])
+        b = args[i]
+        if type(b) == bool:
+            list_of_bool.append(b)
+        elif a.isalpha():
+            list_of_str.append(b)
+        elif a.replace('.', '').isdigit():
+            if '.' in a:
+                list_of_num.append(float(a))
+            else:
+                list_of_num.append(int(a))
+        else:
+            list_of_other.append(b)
+    print('list_of_str', list_of_str)
+    print('list_of_num', list_of_num)
+    print('list_of_bool', list_of_bool)
+    print('list_of_other', list_of_other)
+
+
+check_lists(False, 2.1, (6, 45), True, 'Кукушка', ['Фольсфаген', 'Субару'], 31, 'Бампер' )
+
+#3
+
+def my_dict_func(arg, **kwargs):
+    for i in range(len(kwargs)):
+        if arg == list(kwargs)[i]:
+            print('{}: {}'.format(arg, kwargs.get(arg)))
+        a = list(kwargs.values())[i]
+        if arg == list(a)[0]:
+            print(a)
+
+
+myDict = {'1': {'DEBUG': 'Tracemod'}, '2': {'ERROR': 'Null pointer exception'}, '3': {'INFO': 'startGameAllert'},
+          '4': {'DEBUG': 'sendAllert'}, '5': {'ERROR': 'No valid JSON'}, 'ERROR': 'Error'}
+my_dict_func('ERROR', **myDict)
